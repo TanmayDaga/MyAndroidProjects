@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Button">
+        <item name="layout_rowWeight">0.2</item>
+        <item name="layout_columnWeight">0.25</item>
+        <item name="backgroundColor">@color/orange_500</item>
+        <item name="background">@drawable/button_border</item>
+        <item name="android:layout_marginStart">2dp</item>
+        <item name="android:layout_marginEnd">2dp</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:onClick">buttonClicked</item>
+    </style>
+</resources>
