@@ -29,7 +29,7 @@ public class FetchData {
     private static Context mContext;
     private static Activity mActivity;
 
-    public static void getAndSetData(NewsAdapter newsAdapter, Context context, Activity activity, String state) {
+    public static void getAndSetData(NewsAdapter newsAdapter, Context context, Activity activity, String state,String query) {
         mContext = context;
         mActivity = activity;
         switch (state) {

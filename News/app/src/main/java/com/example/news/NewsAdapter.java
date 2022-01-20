@@ -2,7 +2,9 @@ package com.example.news;
 
 
 import android.content.Context;
+import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.RoundedCorner;
 import android.view.View;
@@ -15,15 +17,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.news.database.AppDatabase;
 import com.example.news.database.NewsEntry;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
+import com.facebook.drawee.view.SimpleDraweeView;
+
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
+
 
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
@@ -70,11 +72,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         if (!TextUtils.isEmpty(mNewsTitle)) {
             holder.titleTextView.setText(mNewsTitle);
         }
+
         if (!TextUtils.isEmpty(mUrlToImage)) {
-            Picasso.get().load(mUrlToImage).
-                    networkPolicy(NetworkPolicy.OFFLINE).
-                    fit().error(R.drawable.error).transform(new RoundedCornersTransformation(10,10)).
-                    into(holder.newsIconImageView);
+            holder.newsIconImageView.setImageURI(Uri.parse(mUrlToImage));
         }
 
         if (publishedAt != null) {
@@ -103,7 +103,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     class NewsViewHolder extends RecyclerView.ViewHolder {
 
         public TextView titleTextView;
-        public ImageView newsIconImageView;
+        public SimpleDraweeView newsIconImageView;
         public TextView dateTextView;
 
         public NewsViewHolder(@NonNull View itemView) {

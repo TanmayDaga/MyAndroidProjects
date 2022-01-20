@@ -1,20 +1,24 @@
 package com.example.news;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
+
+import android.view.Menu;
+
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.news.database.AppDatabase;
 import com.example.news.databinding.ActivityMainBinding;
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 
 import java.util.concurrent.TimeUnit;
 
@@ -24,16 +28,16 @@ public class MainActivity extends AppCompatActivity{
     public static final String ALREADY_HAVE_DATA_BUT_REFRESH = "already";
     public static final String NEVER_BEEN_INITIATED = "never";
     public static final String NOT_REQUIRED_TO_REFRESH = "not";
-    private RecyclerView mRecyclerView;
     private NewsAdapter mAdapter;
     private SharedPreferences sharedPreferences;
     private ActivityMainBinding mBinding;
-    private AppDatabase appDatabase;
+
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fresco.initialize(this);
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
 
 
@@ -48,12 +52,37 @@ public class MainActivity extends AppCompatActivity{
         mBinding.recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
 
 
-        FetchData.getAndSetData(mAdapter,this,MainActivity.this,Utilities.checkToRefresh(this));
+
+
+        FetchData.getAndSetData(mAdapter,this,MainActivity.this,Utilities.checkToRefresh(this),"");
 
 
 //
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_activity_main,menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_search:
+                mBinding.editQuery.setVisibility(View.VISIBLE);
+                return true;
+            default:
+                return false;
+
+
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.getCacheDir().delete();
+    }
 }
