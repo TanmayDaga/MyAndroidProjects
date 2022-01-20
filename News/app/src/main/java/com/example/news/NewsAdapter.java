@@ -4,6 +4,7 @@ package com.example.news;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.RoundedCorner;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,6 +22,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
@@ -67,10 +70,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         if (!TextUtils.isEmpty(mNewsTitle)) {
             holder.titleTextView.setText(mNewsTitle);
         }
-        if (!TextUtils.isEmpty(mUrlToImage)&& Utilities.isNetworkAvailable(mContext)) {
+        if (!TextUtils.isEmpty(mUrlToImage)) {
             Picasso.get().load(mUrlToImage).
                     networkPolicy(NetworkPolicy.OFFLINE).
-                    fit().error(R.drawable.error).into(holder.newsIconImageView);
+                    fit().error(R.drawable.error).transform(new RoundedCornersTransformation(10,10)).
+                    into(holder.newsIconImageView);
         }
 
         if (publishedAt != null) {

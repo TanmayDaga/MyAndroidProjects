@@ -39,7 +39,7 @@ public class FetchData {
         }
     }
 
-    private static void fetchData(NewsAdapter newsAdapter) {
+    public static void fetchData(NewsAdapter newsAdapter) {
 
         Log.d(LOG_TAG, "Data fetching");
         NewsApiClient newsApiClient = new NewsApiClient(API_KEY);
@@ -65,7 +65,7 @@ public class FetchData {
 
     }
 
-    private static void insertData(NewsAdapter newsAdapter) {
+    public static void insertData(NewsAdapter newsAdapter) {
         if (mArticleResponse != null) {
 
             AppDatabase mDb = AppDatabase.getInstance(mContext);
@@ -105,7 +105,7 @@ public class FetchData {
         }
     }
 
-    private static void setData(NewsAdapter newsAdapter) {
+    public static void setData(NewsAdapter newsAdapter) {
 
         AppExecutors.getsInstance().diskIo().execute(new Runnable() {
             @Override
