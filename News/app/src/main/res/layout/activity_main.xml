@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/primaryLightColor"
 >
 
         <EditText
@@ -16,13 +17,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enter_the_query_here"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:imeOptions="actionDone"
+            android:inputType="textShortMessage"
+
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
             tools:context=".MainActivity" />
+
+            <TextView
+                android:id="@+id/emptyTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/no_news_to_display"/>
+        </RelativeLayout>
+
     </LinearLayout>
 
 

@@ -3,4 +3,5 @@
     <string name="preference_key">preference</string>
     <string name="enter_the_query_here">Enter the query here</string>
     <string name="search">Search</string>
+    <string name="no_news_to_display">No News To Display</string>
 </resources>

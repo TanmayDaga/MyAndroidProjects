@@ -24,7 +24,7 @@ import java.util.List;
 public class FetchData {
     private static final String LOG_TAG = FetchData.class.getSimpleName();
 
-    private static final String API_KEY = "332ec178c7ee470b9fbfd4500f07e43d";
+    private static final String API_KEY = "YOUR_API_KEY";
     static ArticleResponse mArticleResponse;
     private static Context mContext;
     private static Activity mActivity;
@@ -34,17 +34,17 @@ public class FetchData {
         mActivity = activity;
         switch (state) {
             case MainActivity.NOT_REQUIRED_TO_REFRESH:setData(newsAdapter);
-            default:fetchData(newsAdapter);
+            default:fetchData(newsAdapter,query);
 
         }
     }
 
-    public static void fetchData(NewsAdapter newsAdapter) {
+    public static void fetchData(NewsAdapter newsAdapter,String query) {
 
         Log.d(LOG_TAG, "Data fetching");
         NewsApiClient newsApiClient = new NewsApiClient(API_KEY);
         newsApiClient.getTopHeadlines(
-                new TopHeadlinesRequest.Builder().pageSize(10).q("")
+                new TopHeadlinesRequest.Builder().pageSize(20).q(query)
                         .language("en")
                         .build(),
                 new NewsApiClient.ArticlesResponseCallback() {

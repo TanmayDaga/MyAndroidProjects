@@ -5,6 +5,10 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -52,5 +56,15 @@ public class Utilities {
                 = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    public static void setEmptyLayout(RecyclerView recyclerView, TextView textView){
+        recyclerView.setVisibility(View.GONE);
+        textView.setVisibility(View.VISIBLE);
+    }
+
+    public static void setFullLayout(RecyclerView recyclerView,TextView textView){
+        recyclerView.setVisibility(View.VISIBLE);
+        textView.setVisibility(View.GONE);
     }
 }

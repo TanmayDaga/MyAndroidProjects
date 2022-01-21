@@ -22,20 +22,20 @@ public interface NewsDao {
     @Insert
     void insertNews(NewsEntry newsEntry);
 
-    @Update(onConflict  = REPLACE)
-    void  updateNews(NewsEntry newsEntry);
+
 
     @Delete
     void deleteNews(NewsEntry newsEntry);
 
-    @Query("SELECT COUNT(*) FROM mynews")
-    int getNoOfItems();
+
 
     @Query("SELECT * FROM mynews WHERE id = :ID")
-    LiveData<NewsEntry> getItemFromId(int ID);
+    NewsEntry getItemFromId(int ID);
 
     @Query("delete from mynews")
     void clearAll();
+
+
 
 
 
