@@ -4,12 +4,12 @@ package com.example.news;
 import android.content.Context;
 import android.net.Uri;
 import android.text.TextUtils;
-import android.util.Log;
+
 import android.view.LayoutInflater;
-import android.view.RoundedCorner;
+
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,14 +26,12 @@ import java.util.List;
 import java.util.Locale;
 
 
-
-
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
 
     private static final String DATE_FORMAT = "dd/MM/yyy";
 
 
-    private static final String LOG_TAG  = NewsAdapter.class.getSimpleName();
+    private static final String LOG_TAG = NewsAdapter.class.getSimpleName();
     AppDatabase mDb;
     Context mContext;
     private List<NewsEntry> newsEntryList;
@@ -42,18 +40,16 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     TextView emptyTextView;
     RecyclerView mRecylerView;
 
-//    Global Variables for bindViewHolder
+    //    Global Variables for bindViewHolder
     NewsEntry mNewsEntry;
     String mNewsTitle;
     String mUrlToImage;
     Date publishedAt;
 
 
-
-
     private SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
 
-    public NewsAdapter(Context context,OnNewsListener listener,RecyclerView recyclerView,TextView emptyTextView) {
+    public NewsAdapter(Context context, OnNewsListener listener, RecyclerView recyclerView, TextView emptyTextView) {
         this.mRecylerView = recyclerView;
         this.emptyTextView = emptyTextView;
         mOnNewsListener = listener;
@@ -66,8 +62,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
 
-        View view = LayoutInflater.from(mContext).inflate(R.layout.news_list_item,parent,false);
-        return new NewsViewHolder(view,mOnNewsListener);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.news_list_item, parent, false);
+        return new NewsViewHolder(view, mOnNewsListener);
 
     }
 
@@ -82,7 +78,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         publishedAt = mNewsEntry.getMpublishedAt();
 
         holder.clickUrl = mNewsEntry.getMurl();
-
 
 
         if (!TextUtils.isEmpty(mNewsTitle)) {
@@ -102,13 +97,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     }
 
 
-
     @Override
     public int getItemCount() {
-        if(newsEntryList != null){
+        if (newsEntryList != null) {
             return newsEntryList.size();
-        }
-        else{
+        } else {
             return 0;
         }
 
@@ -117,11 +110,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
 
     public void setNews(List<NewsEntry> newsEntries) {
-        if(newsEntries == null || newsEntries.size() == 0 ){
-            Utilities.setEmptyLayout(mRecylerView,emptyTextView);
-        }
-        else {
-            Utilities.setFullLayout(mRecylerView,emptyTextView);
+        if (newsEntries == null || newsEntries.size() == 0) {
+            Utilities.setEmptyLayout(mRecylerView, emptyTextView);
+        } else {
+            Utilities.setFullLayout(mRecylerView, emptyTextView);
 
         }
         newsEntryList = newsEntries;
@@ -130,7 +122,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     }
 
 
-    class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class NewsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView titleTextView;
         public SimpleDraweeView newsIconImageView;
@@ -140,8 +132,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         OnNewsListener onNewsListener;
 
 
-
-        public NewsViewHolder(@NonNull View itemView,OnNewsListener onNewsListener) {
+        public NewsViewHolder(@NonNull View itemView, OnNewsListener onNewsListener) {
             super(itemView);
 
             titleTextView = itemView.findViewById(R.id.newsTitleTextView);
@@ -156,8 +147,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             onNewsListener.onNewsClick(clickUrl);
         }
     }
-    public interface OnNewsListener
-    {
+
+    public interface OnNewsListener {
         void onNewsClick(String url);
     }
 

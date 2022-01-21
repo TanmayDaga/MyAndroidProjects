@@ -2,10 +2,7 @@ package com.example.news;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
 import android.util.Log;
-
-import androidx.annotation.RequiresApi;
 
 import com.example.news.database.AppDatabase;
 import com.example.news.database.NewsEntry;
@@ -14,10 +11,7 @@ import com.kwabenaberko.newsapilib.models.Article;
 import com.kwabenaberko.newsapilib.models.request.TopHeadlinesRequest;
 import com.kwabenaberko.newsapilib.models.response.ArticleResponse;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 
@@ -29,17 +23,19 @@ public class FetchData {
     private static Context mContext;
     private static Activity mActivity;
 
-    public static void getAndSetData(NewsAdapter newsAdapter, Context context, Activity activity, String state,String query) {
+    public static void getAndSetData(NewsAdapter newsAdapter, Context context, Activity activity, String state, String query) {
         mContext = context;
         mActivity = activity;
         switch (state) {
-            case MainActivity.NOT_REQUIRED_TO_REFRESH:setData(newsAdapter);
-            default:fetchData(newsAdapter,query);
+            case MainActivity.NOT_REQUIRED_TO_REFRESH:
+                setData(newsAdapter);
+            default:
+                fetchData(newsAdapter, query);
 
         }
     }
 
-    public static void fetchData(NewsAdapter newsAdapter,String query) {
+    public static void fetchData(NewsAdapter newsAdapter, String query) {
 
         Log.d(LOG_TAG, "Data fetching");
         NewsApiClient newsApiClient = new NewsApiClient(API_KEY);

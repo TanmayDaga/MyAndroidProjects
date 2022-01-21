@@ -1,0 +1,3 @@
+<img src = "https://raw.githubusercontent.com/TanmayDaga/MyAndroidProjects/main/Photos/News/Screenshot%202022-01-21%20at%2011.37.28%20AM.png"/>
+<img src = "https://raw.githubusercontent.com/TanmayDaga/MyAndroidProjects/main/Photos/News/Screenshot%202022-01-21%20at%2011.37.56%20AM.png"/>
+<img src="https://raw.githubusercontent.com/TanmayDaga/MyAndroidProjects/main/Photos/News/Screenshot%202022-01-21%20at%2011.38.14%20AM.png"/>
